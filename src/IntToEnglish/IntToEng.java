@@ -19,7 +19,7 @@ public class IntToEng {
     				     "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
     	String num2[] = {"twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"};
     	String num3 = "hundred";
-    	String num4 = "one thousand";
+    	String num4 = "thousand";
     	if(n < 20) {
     		s = num1[n];
     	} else if(n < 100) {
@@ -41,8 +41,35 @@ public class IntToEng {
         			s = num1[n/100] + " " + num3 + " " + num2[i/10 - 2] + " " + num1[n%10];
         		}
     		}
-    	} else {
-    		s = num4;
+    	} else if(n < 10000){
+    		int i = n%1000;
+    		int j = (n/10)%100;
+    		if(i == 0) {
+    			s = num1[n/1000] + " " + num4;
+    		} else if(j == 0) {
+        			s =  num1[n/1000] + " " + num4  + " " + num1[i];
+        			if(n%10 == 0) {
+            			s = num1[n/1000] + " " + num4 + " " + num1[n/1000] + " " + num3 + " " + num2[i/10 - 2];
+            		} else {
+            			s = num1[n/1000] + " " + num4 + " " + num1[n/100] + " " + num3 + " " + num2[i/10 - 2] + " " + num1[n%10];
+            		}
+    		} else if(j == 1) {
+    				s = num1[n/1000] + " " + num4  + " " + num1[i];
+    		} else if(j > 1){
+    			if(n%10 == 0) {
+        			s = num1[n/1000] + " " + num3 + " " + num2[i/10 - 2];
+        		} else {
+        			s = num1[n/1000] + " " + num4  + " " + num2[i/10 - 2] + " " + num1[n%10];
+        		}
+    		} else if(0 <i && i < 20) {
+    			s =  num1[n/1000] + " " + num4 + " " + num1[n/1000] + " " +num3 + " " +num1[i];	
+    		} else {
+    			if(n%10 == 0) {
+        			s = num1[n/1000] + " " + num4 + " " + num1[n/1000] + " " + num3 + " " + num2[i/10 - 2];
+        		} else {
+        			s = num1[n/1000] + " " + num4 + " " + num1[n/100] + " " + num3 + " " + num2[i/10 - 2] + " " + num1[n%10];
+        		}
+    		}
     	}
     	return s;
     }
