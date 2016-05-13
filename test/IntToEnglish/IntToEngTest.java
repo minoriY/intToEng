@@ -27,7 +27,7 @@ public class IntToEngTest {
 		String num2[] = {"twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"};
 		String num3 = "one hundred";
 		String expected[] = new String[101];
-		for(int i = 0; i < 102; i++) {
+		for(int i = 0; i < 101; i++) {
 			if(i < 20) {
 				expected[i] = num1[i];
 	    	} else if(i < 100) {
@@ -41,7 +41,7 @@ public class IntToEngTest {
 	    	}
 		}
 		String actual[] = new String[101];
-		for(int n = 0; n < 102; n++) {
+		for(int n = 0; n < 101; n++) {
 			actual[n] = ite.translateEng(n);
 		}
 		assertThat(actual, is(expected));

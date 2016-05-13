@@ -18,7 +18,8 @@ public class IntToEng {
     	String num1[] = {"zero","one","two","three","four","five","six","seven","eight","nine","ten",
     				     "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
     	String num2[] = {"twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"};
-    	String num3 = "one hundred";
+    	String num3 = "hundred";
+    	String num4 = "one thousand";
     	if(n < 20) {
     		s = num1[n];
     	} else if(n < 100) {
@@ -27,12 +28,24 @@ public class IntToEng {
     		} else {
     			s = num2[n/10 - 2] + " " + num1[n%10];
     		}
+    	} else if(n < 1000) {
+    		int i = n%100;
+    		if(i == 0) {
+        		s =  num1[n/100] + " " +num3;
+    		} else if(0 < i && i < 20) {
+    			s =  num1[n/100] + " " +num3 + " " +num1[i];	
+    		} else {
+    			if(n%10 == 0) {
+        			s = num1[n/100] + " " + num3 + " " + num2[i/10 - 2];
+        		} else {
+        			s = num1[n/100] + " " + num3 + " " + num2[i/10 - 2] + " " + num1[n%10];
+        		}
+    		}
     	} else {
-    		s = num3; 
+    		s = num4;
     	}
-        return s;
+    	return s;
     }
-
 }
 
 
