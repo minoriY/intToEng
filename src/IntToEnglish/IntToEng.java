@@ -3,11 +3,11 @@ import java.util.Scanner;
 
 public class IntToEng {
 	
-static String num1[] = {"zero","one","two","three","four","five","six","seven","eight","nine","ten",
+static String zero2nineteen[] = {"zero","one","two","three","four","five","six","seven","eight","nine","ten",
 		         "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
-static String num2[] = {"twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"};
-static String num3 = "hundred";
-static String num4 = "thousand";
+static String twenty2ninety[] = {"twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"};
+static String hundered = "hundred";
+static String thousand = "thousand";
 
 	   // メインメソッド
     public static void main(String[] args) {
@@ -38,12 +38,14 @@ static String num4 = "thousand";
     static String underHundred(int n) {
     	String s = "";
     	if(n < 20) {
-    		s = num1[n];
+    		s = zero2nineteen[n];
     	} else if(n < 100) {
-    		if(n%10 == 0) {
-    			s = num2[n/10 - 2];
+    		int i = n/10 - 2;
+			int j = n%10;
+			if(j == 0) {
+    			s = twenty2ninety[i];
     		} else {
-    			s = num2[n/10 - 2] + " " + num1[n%10];
+    			s = twenty2ninety[i] + " " + zero2nineteen[j];
     		}
     	}
     	return s;
@@ -52,10 +54,11 @@ static String num4 = "thousand";
     static String underThousand(int n) {
     	String s = "";
     	int i = n%100;
-    	if(i != 0) {
-    		s = num1[n/100] + " " + num3 + " " + underHundred(i);
+    	int j = n/100;
+		if(i != 0) {
+    		s = zero2nineteen[j] + " " + hundered + " " + underHundred(i);
     	} else {
-    		s =  num1[n/100] + " " +num3;
+    		s =  zero2nineteen[j] + " " +hundered;
     	}
     	return s;
      }
@@ -63,10 +66,11 @@ static String num4 = "thousand";
     static String underTenThousand(int n) {
     	String s = "";
     	int i = n%1000;
-    	if(i != 0) {
-    		s = num1[n/1000] + " " + num4 + " " + underThousand(i);
+    	int j = n/1000;
+		if(i != 0) {
+    		s = zero2nineteen[j] + " " + thousand + " " + underThousand(i);
     	} else {
-    		s =  num1[n/1000] + " " +num4;
+    		s =  zero2nineteen[j] + " " +thousand;
     	}
     	return s;
     }
